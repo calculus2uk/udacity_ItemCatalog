@@ -316,7 +316,7 @@ def adminLogin():
             flash('Hello Admin!')
             return render_template('adminCategory.html', categories=categories)
         else:
-            return "<script>function myFunction() {alert('Please Enter right password.');}</script><body onload='myFunction()''>"
+            return "<script>function myFunction() {alert('Please Enter right password.');}</script><body onload='myFunction()''>"  # noqa
 
 
 # Admin Logout
@@ -333,11 +333,12 @@ def categoryJSON():
     categories = session.query(Category)
     return jsonify(categories=[i.serializeCategory for i in categories])
 
+
 @app.route('/catalog/<string:category_name>/JSON')
 def catalogItemsJSON(category_name):
     category = session.query(Category).filter_by(name=category_name).first()
     items = session.query(Item).filter_by(category_id=category.id).all()
-    return jsonify(CatalogItems = [i.serializeItem for i in items])
+    return jsonify(CatalogItems=[i.serializeItem for i in items])
 
 
 @app.route('/')
@@ -361,7 +362,7 @@ def showCategories():
     if login_session['logged_in'] is True and 'username' in login_session:
         return render_template('adminCategory.html', categories=categories)
     else:
-        return "<script>function myFunction() {alert('Sorry Admin Only.');}</script><body onload='myFunction()''>"
+        return "<script>function myFunction() {alert('Sorry Admin Only.');}</script><body onload='myFunction()''>"  # noqa
 
 
 @app.route('/category/new', methods=['GET', 'POST'])
@@ -388,7 +389,7 @@ def editCategory(category_name):
     editCategory = session.query(
         Category).filter_by(name=category_name).first()
     if editCategory.user_id != login_session['user_id']:
-        return "<script>function myFunction() {alert('Sorry Admin Only.');}</script><body onload='myFunction()''>"
+        return "<script>function myFunction() {alert('Sorry Admin Only.');}</script><body onload='myFunction()''>"  # noqa
     if request.method == 'POST':
         if request.form['name']:
             editCategory.name = request.form['name']
@@ -409,7 +410,7 @@ def deleteCategory(category_name):
     deleteCategory = session.query(Category).filter_by(
         name=category_name).one()
     if deleteCategory.user_id != login_session['user_id']:
-        return "<script>function myFunction() {alert('Sorry You are not authorized to delete this category.');}</script><body onload='myFunction()''>"
+        return "<script>function myFunction() {alert('Sorry You are not authorized to delete this category.');}</script><body onload='myFunction()''>"  # noqa
     if request.method == 'POST':
         session.delete(deleteCategory)
         session.commit()
@@ -498,7 +499,7 @@ def editItem(category_name, item_title):
     print(category.user_id)
 
     if login_session['user_id'] != creator.id:
-        return "<script>function myFunction() {alert('You are not authorized to edit this item .');}</script><body onload='myFunction()''>"
+        return "<script>function myFunction() {alert('You are not authorized to edit this item .');}</script><body onload='myFunction()''>"  # noqa
     if request.method == 'POST':
         if request.form['title']:
             editItem.title = request.form['title']
@@ -524,7 +525,7 @@ def deleteItem(category_name, item_title):
     deleteItem = session.query(Item).filter_by(title=item_title).first()
     creator = getUserInfo(deleteItem.user_id)
     if creator.id != login_session['user_id']:
-        return "<script>function myFunction() {alert('.');}</script><body onload='myFunction()''>"
+        return "<script>function myFunction() {alert('.');}</script><body onload='myFunction()''>"  # noqa
     if request.method == 'POST':
         session.delete(deleteItem)
         session.commit()
