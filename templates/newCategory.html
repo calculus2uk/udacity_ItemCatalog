@@ -1,0 +1,25 @@
+{% extends "header.html" %}
+{% block content %}
+
+<div class="row">
+	<section class=" col-md-12 greeting text-center">
+	  <h2>Hello Admin!!</h2>
+	  <h3>Time to create a new category</h3>
+	  <br><br>
+	</section> 
+</div>
+
+<form action="{{url_for('newCategory')}}" method="POST">
+  <div class="form-group row">
+    <label for="Title" class="col-md-2 col-form-label col-form-label-lg">Title</label>
+      <div class="col-md-10">
+        <input type="text" placeholder="Enter Title" name="name" required>
+      </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-12">
+      <input type="submit" class="submit" name="submit" value="Submit">
+    </div>
+  </div>
+</form>
+{%endblock%}

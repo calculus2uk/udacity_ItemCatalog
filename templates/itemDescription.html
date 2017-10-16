@@ -1,0 +1,19 @@
+{% extends "header.html" %}
+{% block content %}
+{%include "banner.html" %}
+
+<br><br>
+	<div class="row background margin">
+	  <section class="col-md-8"> <!-- section item title starts -->
+	    <h2>{{item.title}}</h2>
+	  </section><!-- section item title ends -->
+	  <section class="row col-md-12 margin top"><!-- section description  starts -->
+	  	<h2><span class="badge badge-dark">Description</span></h2>
+	    <p>{{item.description}}</p>
+	  </section>
+	  <section class="col-md-12 margin top">
+	    <a href="{{url_for('editItem', category_name=category.name, item_title=item.title)}}">Edit</a>
+    	<a href="{{url_for('deleteItem', category_name=category.name, item_title=item.title)}}">Delete</a>
+	  </section><!-- section description  starts -->
+	</div>
+{% endblock %}

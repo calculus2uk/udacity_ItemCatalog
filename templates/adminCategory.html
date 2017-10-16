@@ -1,0 +1,34 @@
+{% extends "header.html" %}
+
+{% block content %}
+
+<div class="row text-center"> <!--MESSAGE FLASHING div starts -->
+  <section class="col-md-12">
+    <br>
+    <!--MESSAGE FLASHING EXAMPLE -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <span class="alert alert-success text-center flashMessage" role="alert"> <strong>{{message}}</strong></span>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <!--MESSAGE FLASHING EXAMPLE ENDS-->
+    <br>
+  </section>
+</div> <!--MESSAGE FLASHING EXAMPLE ends -->
+<div id="category">
+  <h2>Categories</h2>
+  <a href="{{url_for('newCategory')}}"><span class="badge badge-dark">Create new Category</span></a><br><br>
+  <a href="{{url_for('homepage')}}"><span class="badge badge-info">Go to default homepage</span></a>
+  <br><br>
+  {% for i in categories %}
+    {{i.name}}<br>
+    <a href="{{url_for('editCategory', category_name=i.name)}}">Edit</a><br>
+    <a href="{{url_for('deleteCategory', category_name=i.name)}}">Delete</a>
+    <br><br>
+  {% endfor %}
+</div>
+
+{%endblock%}
+

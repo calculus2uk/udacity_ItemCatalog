@@ -1,0 +1,35 @@
+{% extends "header.html" %}
+{% block content %}
+
+<div id="flashMessage" class="text-center"> <!-- flash message div starts -->
+  <br>
+  <!--MESSAGE FLASHING EXAMPLE -->
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+  {% for message in messages %}
+  <span class="alert alert-success text-center flashMessage" role="alert"> <strong>{{message}}</strong></span>
+  {% endfor %}
+  {% endif %}
+  {% endwith %}
+  <!--MESSAGE FLASHING EXAMPLE ENDS-->
+  <br><br>
+</div> <!-- flash message div ends -->
+
+<div class="row background wrapper"><!-- content div starts -->
+  <section class="col-md-6" id="category"><!-- category content section starts -->
+     <h2>Categories</h2><br>
+      <a href="{{url_for('showCategories')}}"><span class="badge badge-primary">Create/Edit/Delete Category</a><br>
+	   {% for i in categories %}
+	     <a href="{{url_for('showItem', category_name=i.name)}}">{{i.name}}</a><br>
+	       {% endfor %}
+  </section><!-- category content section ends -->
+  <section class="col-md-6" id="items_added"><!-- Items content section starts -->
+    <h2>Latest Items</h2><br>
+	    {% for i in range (0,10)| sort(reverse = True) %}
+	    {{item[i].title}}({{item[i].category.name}})<br>
+	    {% endfor %}
+  </section><!-- Items content section ends -->
+</div><!-- content div ends -->
+
+{%endblock%}
+

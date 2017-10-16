@@ -1,0 +1,44 @@
+{%extends "header.html" %}
+{% block content %}
+{% include "banner.html"%}
+
+<div class="row text-center"> <!--MESSAGE FLASHING div starts -->
+  <section class="col-md-12">
+    <br>
+    <!--MESSAGE FLASHING EXAMPLE -->
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    {% for message in messages %}
+    <span class="alert alert-success text-center flashMessage" role="alert"> <strong>{{message}}</strong></span>
+    {% endfor %}
+    {% endif %}
+    {% endwith %}
+    <!--MESSAGE FLASHING EXAMPLE ENDS-->
+    <br><br>
+  </section>
+</div> <!--MESSAGE FLASHING EXAMPLE ends -->
+
+<div class = "row background wrapper"> <!-- content div starts -->
+  <div class="row margin">
+    <section class="col-md-12 text-center">
+      <a href="{{url_for('newItem', category_name=category.name)}}"><span class="badge badge-primary">Create new item</a><br><br>
+    </section>
+    <div class="row margin text-center">
+    <section class="col-md-6" id="category"> <!-- category scetion starts -->
+    	<button class="btn">Categories<span class="badge badge-secondary"></span></button><br>
+    	{% for i in categories %}
+    	<a href="{{url_for('showItem', category_name=i.name)}}">{{i.name}}</a><br>
+    	{% endfor %}<br>
+    </section><!-- category section ends -->
+    <section class="col-md-6" id="items_added"> <!-- Items section starts -->
+      <button class="btn">{{category.name}} Items ({{items|length}} Items)<span class="badge badge-secondary"></span></button><br><br>
+      {% for i in items %}
+      <a href="{{url_for('showItemDescription', category_name=category.name, item_title=i.title )}}">{{i.title}}</a>
+      <br>
+      {% endfor %}
+    </section> <!-- Items section ends -->
+    </div>
+  </div>
+</div>
+{% endblock%}
+

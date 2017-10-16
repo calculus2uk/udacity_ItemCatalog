@@ -1,0 +1,25 @@
+{% extends "header.html" %}
+{% block content %}
+
+<div class="row">
+	<section class=" col-md-12 greeting">
+	  <h2>Hello Admin!!</h2>
+	  <h3>Time to Edit a Category</h3>
+	</section> 
+</div>
+
+<form action="{{url_for('editCategory', category_name=category_name, category=editCategory)}}" method="POST">
+  <div class="form-group row">
+    <label for="Title" class="col-md-2 col-form-label col-form-label-lg">Title</label>
+      <div class="col-md-10">
+        <input type="text" placeholder="{{category.name}}" name="name">
+      </div>
+  </div>
+  <div class="form-group row">
+    <div class="col-md-12">
+      <input type="submit" class="submit" name="submit" value="Submit">
+    </div>
+  </div>
+</form>
+
+{%endblock%}

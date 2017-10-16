@@ -1,0 +1,11 @@
+{% extends "header.html" %}
+{% block content %}
+
+<h3 class="top"> Are you sure you want to delete {{item.title}}?</h3><br>
+
+<form action="{{ url_for('deleteItem', category_name=category_name, item_title=item_title)}}" method = 'post'>
+  <input type='submit', class="btn btn-danger", role="button", value = 'Delete'>
+  <a class="btn btn-success" role="button" href="{{url_for('showItem', category_name=category_name)}} ">Cancel</a>
+</form>
+<br>
+{% endblock%}
