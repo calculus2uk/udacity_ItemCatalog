@@ -30,6 +30,10 @@ Run python application.py in your terminal
 
 browse the application in your browser http://localhost:5000/
 
+### Credits
+
+Credits to https://www.sportsdirect.com. 
+
 
 ### Lincense
 MIT License
