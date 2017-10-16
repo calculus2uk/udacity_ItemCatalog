@@ -1,14 +1,15 @@
 # Udacity Item Catalog Project 4 
 This is a web application that provides a list of items within a variety of categories as well as provide a user registration and authentication system. Registered users will have the ability to post, edit and delete their own items.
 Logging in as admin gives permission to create categories for which others can post in
+Admin details : admin@admin.com, password:1234
 
 # Requirements!
 
   - Python 2 or 3 Python can be downloaded from [here](https://www.python.org/downloads/)
   
-  - Vagrant Vagrant is the software that configures the VM and lets you share     files        between your host computer and the VM's filesystem. Download it from [vagrantup.com](https://www.vagrantup.com/downloads.html). Install the version for your operating system.
+  - Vagrant Vagrant is the software that configures the VM and lets you share files between your host computer and the VM's filesystem. Download it from [vagrantup.com](https://www.vagrantup.com/downloads.html). Install the version for your operating system.
   
-  - VirtualBox VirtualBox is the software that actually runs the virtual         machine.      You can download it from virtualbox.org, [here](https://www.virtualbox.org/wiki/Downloads). Install the          platform package for your operating system. You do not need the extension pack or the SDK. You do       not need to launch VirtualBox after installing it; Vagrant will do that.
+  - VirtualBox VirtualBox is the software that actually runs the virtual machine. You can download it from virtualbox.org, [here](https://www.virtualbox.org/wiki/Downloads). Install the platform package for your operating system. You do not need the extension pack or the SDK. You do not need to launch VirtualBox after installing it; Vagrant will do that.
   
 - Download the VM configuration
     There are a couple of different ways you can download the VM configuration.You can download and unzip this file: FSND-Virtual-Machine.zip This will give you a directory called FSND-Virtual-Machine. It may be located inside your Downloads folder.
@@ -25,7 +26,7 @@ Logging in as admin gives permission to create categories for which others can p
 
 ### Running the project
 
-run python application.py in your terminal
+Run python application.py in your terminal
 
 browse the application in your browser http://localhost:5000/
 

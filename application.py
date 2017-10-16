@@ -324,7 +324,7 @@ def adminLogin():
 def adminLogout():
     login_session['logged_in'] = False
     del login_session['username']
-    del user_id
+    del login_session['user_id']
 
 
 # Making an API Endpoint ()
@@ -426,18 +426,18 @@ def deleteCategory(category_name):
 def showItem(category_name):
     categories = session.query(Category)
     category = session.query(Category).filter_by(name=category_name).one()
-    creator = getUserInfo(category.user_id)
-    loggedUser = getUserInfo(login_session['user_id'])
-    print(loggedUser.name)
     items = session.query(Item).filter_by(category_id=category.id).all()
-    print(creator.id)
-    if ('username' in login_session or creator.id == login_session['user_id']):
+    creator = getUserInfo(category.user_id)
+    if ('username' in login_session):
+        loggedUser = getUserInfo(login_session['user_id'])
+        print(loggedUser.name)
+        print(creator.id)
         return render_template('item.html', items=items,
                                category=category, categories=categories,
                                creator=creator, loggedUser=loggedUser)
     else:
         return render_template('publicItems.html', category=category,
-                               items=items, creator=creator,
+                               items=items,
                                categories=categories)
 
 
@@ -447,10 +447,10 @@ def showItemDescription(category_name, item_title):
     category = session.query(Category).filter_by(name=category_name).one()
     creator = getUserInfo(category.user_id)
     items = session.query(Item).filter_by(category_id=category.id).all()
-    loggedUser = getUserInfo(login_session['user_id'])
     item = session.query(Item).filter_by(title=item_title).first()
     print(creator.id)
-    if 'username' in login_session or creator.id == login_session['user_id']:
+    if 'username' in login_session:
+        loggedUser = getUserInfo(login_session['user_id'])
         return render_template('itemDescription.html', item=item,
                                category=category, creator=creator,
                                loggedUser=loggedUser)
